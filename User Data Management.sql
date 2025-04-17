@@ -89,4 +89,9 @@ BEGIN
     -- This needs the SQL Server BCP utility to export data.
     EXEC xp_cmdshell 'bcp "SELECT * FROM Users" queryout ' + @FilePath + ' -c -t, -T -S localhost';
 END;
-
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user'
+);
